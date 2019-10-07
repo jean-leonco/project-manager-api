@@ -13,4 +13,5 @@ Route.group(() => {
 
 Route.group(() => {
   Route.post('invites', 'InviteController.store')
+  Route.resource('projects', 'ProjectController').apiOnly()
 }).middleware(['auth', 'team'])
