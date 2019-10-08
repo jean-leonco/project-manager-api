@@ -37,4 +37,6 @@ Route.group(() => {
   Route.put('members/:id', 'MemberController.update')
     .validator('Member')
     .middleware('is:administrator')
+
+  Route.get('permissions', 'PermissionController.show')
 }).middleware(['auth', 'team'])
