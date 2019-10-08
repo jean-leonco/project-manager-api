@@ -8,6 +8,8 @@ Route.post('sessions', 'SessionController.store').validator('Session')
 Route.post('users', 'UserController.store').validator('User')
 
 Route.group(() => {
+  Route.get('roles', 'RoleController.index')
+
   Route.resource('teams', 'TeamController')
     .apiOnly()
     .validator(new Map([[['teams.store', 'teams.update'], ['Team']]]))
@@ -29,4 +31,10 @@ Route.group(() => {
         ]
       ])
     )
+
+  Route.get('members', 'MemberController.index')
+
+  Route.put('members/:id', 'MemberController.update')
+    .validator('Member')
+    .middleware('is:administrator')
 }).middleware(['auth', 'team'])

@@ -14,6 +14,10 @@ class User extends Model {
     })
   }
 
+  static get hidden () {
+    return ['password']
+  }
+
   teamsJoins () {
     return this.hasMany('App/Models/UserTeam')
   }
